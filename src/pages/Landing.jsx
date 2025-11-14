@@ -113,7 +113,7 @@ export default function Landing() {
               fontSize: '28px',
               color: '#667eea'
             }}>
-              Qq
+              Q
             </div>
             <h1 style={{
               color: 'white',
