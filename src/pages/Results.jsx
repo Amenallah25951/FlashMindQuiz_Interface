@@ -90,7 +90,6 @@ export default function Results() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '20px'
       }}>
         {/* Logo */}
         <div style={{
