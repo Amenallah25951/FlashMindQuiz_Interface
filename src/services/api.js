@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://flash-mind-quiz-6.onrender.com/api"; // ✅ CHANGÉ DE 8081 à 8080
+const API_URL = "https://flash-mind-quiz-7.onrender.com/api"; // ✅ CHANGÉ DE 8081 à 8080
 
 const api = axios.create({
   baseURL: API_URL,
