@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://flash-mind-quiz-7.onrender.com/api/auth";
+const API_URL = "https://flash-mind-quiz-9.onrender.com/api/auth";
 
 // Configuration d'Axios avec intercepteur
 const api = axios.create({
