@@ -424,102 +424,76 @@ export default function Landing() {
           </p>
 
           <div style={{
-  display: 'flex',
-  justifyContent: 'center',
-  flexWrap: 'wrap',
-  gap: '30px'
-}}>
-  {/* Dev 1 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src={azzouni}
-      alt="Développeur 1" 
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Amen Allah EL AZZOUNI
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      Chef de projet - Full Stack Developer
-    </p>
-  </div>
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '20px',
+            padding: '40px',
+            marginTop: '40px'
+          }}>
+            <h4 style={{
+              fontSize: '28px',
+              fontWeight: 'bold',
+              color: 'white',
+              marginBottom: '30px'
+            }}>
+              Développé par
+            </h4>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              gap: '30px'
+            }}>
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src={azzouni}
+                  alt="Développeur 1" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                Amen Allah EL AZZOUNI
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Chef de projet - Full Stack Developer
+                </p>
+              </div>
 
-  {/* Dev 2 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src="https://randomuser.me/api/portraits/men/32.jpg"
-      alt="Développeur 2"
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Développeur 2
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      Frontend Developer
-    </p>
-  </div>
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                  alt="Développeur 2" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                  Nom Développeur 2
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Frontend Developer
+                </p>
+              </div>
 
-  {/* Dev 3 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src="https://randomuser.me/api/portraits/women/65.jpg"
-      alt="Développeur 3"
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Développeur 3
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      Backend Developer
-    </p>
-  </div>
-
-  {/* Dev 4 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src="https://randomuser.me/api/portraits/men/75.jpg"
-      alt="Développeur 4"
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Développeur 4
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      UI/UX Designer
-    </p>
-  </div>
-
-  {/* Dev 5 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src="https://randomuser.me/api/portraits/women/20.jpg"
-      alt="Développeur 5"
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Développeur 5
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      Mobile Developer
-    </p>
-  </div>
-
-  {/* Dev 6 */}
-  <div style={{ textAlign: 'center' }}>
-    <img 
-      src="https://randomuser.me/api/portraits/men/90.jpg"
-      alt="Développeur 6"
-      className="developer-img"
-    />
-    <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
-      Développeur 6
-    </h5>
-    <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
-      DevOps Engineer
-    </p>
-  </div>
-</div>
-
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                  alt="Développeur 3" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                  Nom Développeur 3
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Backend Developer
+                </p>
+              </div>
+              
+            </div>
+          </div>
         </section>
 
         {/* Footer */}
