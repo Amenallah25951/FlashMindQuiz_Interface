@@ -475,6 +475,51 @@ export default function Landing() {
                   Frontend Developer
                 </p>
               </div>
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                  alt="Développeur 2" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                  Nom Développeur 2
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Frontend Developer
+                </p>
+              </div>
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                  alt="Développeur 2" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                  Nom Développeur 2
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Frontend Developer
+                </p>
+              </div>
+              <div style={{
+                textAlign: 'center'
+              }}>
+                <img 
+                  src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" 
+                  alt="Développeur 2" 
+                  className="developer-img"
+                />
+                <h5 style={{ fontSize: '20px', fontWeight: 'bold', color: 'white', marginBottom: '5px' }}>
+                  Nom Développeur 2
+                </h5>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)' }}>
+                  Frontend Developer
+                </p>
+              </div>
 
               <div style={{
                 textAlign: 'center'
