@@ -21,7 +21,84 @@ export default function QuizPage() {
 
   useEffect(() => {
     loadQuiz();
-  }, [id]);
+    
+    // Empêcher le copier-coller
+    const handleCopy = (e) => {
+      e.preventDefault();
+      alert('Le copier-coller est désactivé pendant le quiz.');
+      return false;
+    };
+
+    const handleCut = (e) => {
+      e.preventDefault();
+      return false;
+    };
+
+    const handlePaste = (e) => {
+      e.preventDefault();
+      alert('Le copier-coller est désactivé pendant le quiz.');
+      return false;
+    };
+
+    // Détecter quand l'utilisateur quitte l'onglet
+    const handleVisibilityChange = () => {
+      if (document.hidden && quizStarted) {
+        // Fermer la page/onglet
+        window.close();
+        // Alternative: redirection si window.close ne fonctionne pas
+        window.location.href = 'about:blank';
+      }
+    };
+
+    // Détecter les raccourcis clavier
+    const handleKeyDown = (e) => {
+      // Empêcher Ctrl+C, Ctrl+V, Ctrl+X, etc.
+      if ((e.ctrlKey || e.metaKey) && 
+          (e.key === 'c' || e.key === 'v' || e.key === 'x' || e.key === 'a')) {
+        e.preventDefault();
+        alert('Cette action est désactivée pendant le quiz.');
+        return false;
+      }
+
+      // Empêcher F12 (DevTools)
+      if (e.key === 'F12') {
+        e.preventDefault();
+        alert('Les outils de développement sont désactivés pendant le quiz.');
+        return false;
+      }
+
+      // Empêcher le menu contextuel via Shift+F10 ou autre
+      if (e.key === 'F10' && e.shiftKey) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    // Empêcher le clic droit (menu contextuel)
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+      alert('Le menu contextuel est désactivé pendant le quiz.');
+      return false;
+    };
+
+    // Ajouter les écouteurs d'événements
+    document.addEventListener('copy', handleCopy);
+    document.addEventListener('cut', handleCut);
+    document.addEventListener('paste', handlePaste);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Nettoyer les écouteurs
+    return () => {
+      document.removeEventListener('copy', handleCopy);
+      document.removeEventListener('cut', handleCut);
+      document.removeEventListener('paste', handlePaste);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [id, quizStarted]);
 
   useEffect(() => {
     if (quizStarted && timeRemaining > 0 && quiz) {
@@ -41,7 +118,6 @@ export default function QuizPage() {
       setQuiz(data);
       
       // Charger les vraies questions du quiz depuis l'API
-      // Note: Ajoutez cette méthode dans quizService.js
       const questionsData = await quizService.getQuizQuestions(id);
       setQuestions(questionsData);
       
@@ -56,6 +132,12 @@ export default function QuizPage() {
   const handleStartQuiz = () => {
     setQuizStarted(true);
     setTimeRemaining(30);
+    
+    // Bloquer la navigation arrière
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function() {
+      window.history.go(1);
+    };
   };
 
   const handleAnswerSelect = (response) => {
@@ -108,6 +190,9 @@ export default function QuizPage() {
       // Sauvegarder la participation dans l'API
       await quizService.submitQuizAnswers(id, result);
       
+      // Réactiver les fonctionnalités normales du navigateur
+      window.onpopstate = null;
+      
       // Naviguer vers la page de résultats
       navigate(`/student/results`, { 
         state: { 
@@ -135,6 +220,12 @@ export default function QuizPage() {
     body {
       margin: 0;
       padding: 0;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     @keyframes fadeIn {
       from {
@@ -298,12 +389,15 @@ export default function QuizPage() {
               textAlign: 'left'
             }}>
               <div style={{ fontWeight: 'bold', marginBottom: '10px', color: '#856404' }}>
-                ⚠️ Instructions :
+                ⚠️ Instructions importantes :
               </div>
               <ul style={{ margin: 0, paddingLeft: '20px', color: '#856404' }}>
                 <li>Vous avez 30 secondes par question</li>
                 <li>Une seule réponse par question</li>
-                <li>Le quiz commence dès que vous cliquez sur "Commencer"</li>
+                <li>Le copier-coller est désactivé</li>
+                <li>Le menu contextuel (clic droit) est désactivé</li>
+                <li>Si vous quittez l'onglet, le quiz se terminera automatiquement</li>
+                <li>Les outils de développement sont bloqués</li>
               </ul>
             </div>
 
