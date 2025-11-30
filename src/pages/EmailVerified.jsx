@@ -13,15 +13,51 @@ export default function EmailVerified() {
 
     if (success === "true") {
       setStatus("success");
-      setMessage("Votre email a été vérifié avec succès !");
+      setMessage("Votre email a été vérifié avec succès ! Vous pouvez maintenant vous connecter.");
+    } else if (error) {
+      setStatus("error");
+      setMessage(decodeURIComponent(error));
     } else {
       setStatus("error");
-      setMessage(error || "Une erreur s'est produite lors de la vérification de votre email.");
+      setMessage("Lien de vérification invalide ou manquant.");
     }
   }, [searchParams]);
 
   const handleLoginRedirect = () => {
     navigate("/login");
+  };
+
+  const handleResendVerification = async () => {
+    const email = prompt("Veuillez entrer votre adresse email pour recevoir un nouveau lien de vérification:");
+    
+    if (!email) {
+      return;
+    }
+
+    try {
+      setStatus("loading");
+      const response = await fetch("https://flash-mind-quiz-10-jhbu.onrender.com/api/auth/resend-verification", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus("success");
+        setMessage("Un nouvel email de vérification a été envoyé ! Vérifiez votre boîte de réception.");
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Erreur lors de l'envoi du nouvel email.");
+      }
+    } catch (error) {
+      console.error("Erreur lors du renvoi:", error);
+      setStatus("error");
+      setMessage("Erreur de connexion. Veuillez réessayer.");
+    }
   };
 
   const styles = `
@@ -66,6 +102,28 @@ export default function EmailVerified() {
         transform: scale(1);
       }
     }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
     .fade-in {
       animation: fadeIn 0.8s ease-out;
     }
@@ -105,14 +163,6 @@ export default function EmailVerified() {
       background: linear-gradient(90deg, #28a745, #20c997, #28a745);
       background-size: 200% 100%;
       animation: shimmer 3s infinite linear;
-    }
-    @keyframes shimmer {
-      0% {
-        background-position: -200% 0;
-      }
-      100% {
-        background-position: 200% 0;
-      }
     }
     .success-icon {
       width: 120px;
@@ -163,10 +213,6 @@ export default function EmailVerified() {
       box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
       animation: spin 2s linear infinite;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
     .login-button {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
@@ -201,6 +247,23 @@ export default function EmailVerified() {
       transform: translateY(-2px);
       box-shadow: 0 15px 40px rgba(220, 53, 69, 0.6);
     }
+    .resend-button {
+      background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+      color: white;
+      border: none;
+      padding: 16px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 30px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+    }
+    .resend-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+    }
     .confetti {
       position: absolute;
       width: 10px;
@@ -208,16 +271,6 @@ export default function EmailVerified() {
       background: #ffd700;
       border-radius: 50%;
       animation: confetti-fall 5s linear infinite;
-    }
-    @keyframes confetti-fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
     }
     
     @media (max-width: 768px) {
@@ -523,11 +576,11 @@ export default function EmailVerified() {
                   Page de connexion
                 </button>
                 <button
-                  onClick={() => window.location.reload()}
-                  className="retry-button"
+                  onClick={handleResendVerification}
+                  className="resend-button"
                   style={{ marginTop: 0 }}
                 >
-                  Réessayer
+                  Renvoyer l'email
                 </button>
               </div>
             </>
